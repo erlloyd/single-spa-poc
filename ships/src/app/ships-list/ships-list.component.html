@@ -1,0 +1,7 @@
+<div class="ships-list-container">
+  <a class="ship" routerLink="/ships/1">Millenium Falcon</a>
+  <input type="button" value="Toggle" (click)="toggle()" />
+  <div *ngIf="show">
+    TOGGLED
+  </div>
+</div>

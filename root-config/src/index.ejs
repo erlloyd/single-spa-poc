@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Root Config</title>
+  <meta name="importmap-type" content="systemjs-importmap" />
+  <!-- Note: the below would be for loading the import map from another separately maintained location -->
+  <!-- <script type="systemjs-importmap" src="https://storage.googleapis.com/react.microfrontends.app/importmap.json"></script> -->
+
+  <!-- Here's an example of how to load and override the map if running locally-->
+  <% if (isLocal) { %>
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "react": "https://cdn.jsdelivr.net/npm/react@16.13.0/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.0/umd/react-dom.production.min.js",
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.1.1/lib/system/single-spa.min.js",
+        "@react-mf/root-config": "http://localhost:9000/react-mf-root-config.js",
+        "@react-mf/styleguide": "http://localhost:9005/react-mf-styleguide.js",
+        "@react-mf/navbar": "http://localhost:9002/react-mf-navbar.js",
+        "@react-mf/ships": "http://localhost:4200/main.js"
+      }
+    }
+  </script>
+  <% } %>
+  <script src="https://unpkg.com/zone.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/import-map-overrides/dist/import-map-overrides.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/named-exports.min.js"></script>
+</head>
+<body>
+  <script>
+    System.import('@react-mf/root-config');
+    System.import('@react-mf/styleguide');
+  </script>
+  <!-- <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full> -->
+  <import-map-overrides-full dev-libs></import-map-overrides-full>
+</body>
+</html>
